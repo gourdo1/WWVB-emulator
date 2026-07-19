@@ -123,3 +123,7 @@ machines with no Python installed. Attach it to a GitHub release with:
 ```powershell
 gh release create v0.1.0 release\windows\wwvb-emulator.exe
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE).
