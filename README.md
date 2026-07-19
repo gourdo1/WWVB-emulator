@@ -106,3 +106,20 @@ broadcast — the coupling is magnetic, like a transformer:
   `--time-source local`.
 - **Consistently a fraction of a second late:** add `--offset 0.1` (or your
   measured audio latency).
+
+## Building a standalone Windows exe
+
+```powershell
+.venv\Scripts\python -m pip install pyinstaller
+.venv\Scripts\pyinstaller --onefile --name wwvb-emulator -p src `
+    --collect-all sounddevice --collect-all tzdata `
+    --distpath release\windows packaging\entry.py
+```
+
+This produces `release\windows\wwvb-emulator.exe` (~20 MB), which bundles
+Python, NumPy, the PortAudio DLL, and the time-zone database — it runs on
+machines with no Python installed. Attach it to a GitHub release with:
+
+```powershell
+gh release create v0.1.0 release\windows\wwvb-emulator.exe
+```
