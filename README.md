@@ -30,6 +30,9 @@ py -m venv .venv
    flows through the cable, and the coil works as a tiny magnetic
    transmitting antenna (see
    [How the coil couples to the watch](#how-the-coil-couples-to-the-watch)).
+   Alternatively, hold the watch directly in front of an active (amplified)
+   speaker at high volume: the speaker's voice coil is itself a coil carrying
+   the signal current, and its amplifier provides the distortion.
 4. Put the clock/watch into **manual receive mode** (often holding a button —
    check its manual).
 5. Run: .venv\Scripts\wwvb-emulator
@@ -70,7 +73,10 @@ broadcast — the coupling is magnetic, like a transformer:
 2. **A coil concentrates the magnetic field.** Any current-carrying wire is
    surrounded by a magnetic field, but a straight cable spreads it thinly.
    Winding the cable into a loop makes each turn's field add up in the
-   middle — N turns gives roughly N× the field strength.
+   middle — N turns gives roughly N× the field strength. A loudspeaker works
+   too, without any winding on your part: its voice coil is a ready-made
+   multi-turn coil carrying the signal current, which is why a watch held
+   directly in front of an active speaker can lock.
 3. **The watch receives magnetically.** WWVB receivers use a small ferrite-rod
    loopstick antenna that responds to the *magnetic* component of the 60 kHz
    signal. At 60 kHz the wavelength is 5 km, so a few centimeters of wire
@@ -91,6 +97,11 @@ broadcast — the coupling is magnetic, like a transformer:
 - **No lock:** try a different output device (`--list-devices`) — some clean
   USB DACs produce too little harmonic distortion. Cheap built-in audio often
   works better. Try `--mode direct` with a 192 kHz-capable device.
+- **No lock in front of a speaker:** the speaker's crossover may send the
+  20 kHz tone only to the tweeter, so try holding the watch in front of the
+  tweeter rather than the woofer. Speakers with DSP processing may also
+  filter or resample the tone away entirely — earbuds are the more reliable
+  fallback.
 - **Clock off by whole hours:** check the clock's time-zone setting, or try
   `--time-source local`.
 - **Consistently a fraction of a second late:** add `--offset 0.1` (or your
